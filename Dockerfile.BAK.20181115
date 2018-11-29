@@ -1,0 +1,19 @@
+FROM cupy/cupy:latest-python3
+FROM gcr.io/tensorflow/tensorf:latest-gpu
+FROM tensorflow/tensorflow:latest-gpu
+
+RUN apt update -y && \
+    apt install -y --no-install-recommends \
+    wget \
+    gdal-bin \
+    mecab \
+    mecab-ipadic-utf8
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+RUN pip3 install --no-cache-dir \
+    pillow \
+    h5py \
+    chainer \
+    keras
